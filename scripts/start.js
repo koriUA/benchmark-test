@@ -14,6 +14,7 @@ process.on('unhandledRejection', err => {
 // Ensure environment variables are read.
 require('../config/env');
 
+process.stdout.isTTY = process.env.TTY !== 'false';
 
 const fs = require('fs');
 const chalk = require('react-dev-utils/chalk');

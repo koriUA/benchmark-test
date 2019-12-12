@@ -1,0 +1,7 @@
+$acoustic-font-path: '../node_modules/@decibel/components/lib/scss/' !global;
+@import '~@decibel/components/lib/scss/styles';
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
