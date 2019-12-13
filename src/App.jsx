@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  BreadcrumbsTemplate,
-  Breadcrumb,
-  BreadcrumbItem,
-} from '@decibel/components';
+import { BreadcrumbsTemplate, Breadcrumb, BreadcrumbItem } from '@decibel/components';
 import Shell from 'cui-react-shell';
 
 const Breadcrumbs = () => (
