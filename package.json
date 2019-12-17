@@ -70,7 +70,10 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js",
+    "test": "jest",
+    "test:watch": "jest --watchAll --runInBand --verbose",
+    "test:update": "jest --updateSnapshot",
+    "test:clear": "jest --clearCache",
     "format": "prettier --write \"**/*.{scss,css,js,jsx,md,ts}\"",
     "format:diff": "prettier --list-different \"**/*.{scss,css,js,jsx,md,ts}\"",
     "lint": "yarn lint:javascript && yarn lint:stylelint",
