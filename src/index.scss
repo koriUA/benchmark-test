@@ -1,8 +1,10 @@
 $acoustic-font-path: '../node_modules/@decibel/components/lib/scss/' !global;
 @import '~@decibel/components/lib/scss/styles';
+@import '~cui-react-shell/build/shell.css';
 
 html,
 body {
   height: 100%;
   width: 100%;
 }
+@import './components/admin/usage/usage';
