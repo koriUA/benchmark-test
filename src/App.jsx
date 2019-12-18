@@ -8,8 +8,17 @@ import {
 } from '@decibel/components';
 import { Link } from 'react-router-dom';
 import Shell from 'cui-react-shell';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 
 import Routes from './routes';
+import reducers from './redux/reducers';
+import { logger, crashReporter } from './redux/middleware';
+
+const store = createStore(
+  reducers,
+  applyMiddleware(logger, crashReporter)
+);
 
 const Breadcrumbs = () => (
   <Breadcrumb>
@@ -37,11 +46,13 @@ const navigationItems = () => (
 
 function App() {
   return (
-    <Shell navigationItems={navigationItems}>
-      <BreadcrumbsTemplate breadcrumbs={<Breadcrumbs />}>
-        <Routes />
-      </BreadcrumbsTemplate>
-    </Shell>
+    <Provider store={store}>
+      <Shell navigationItems={navigationItems}>
+        <BreadcrumbsTemplate breadcrumbs={<Breadcrumbs />}>
+          <Routes />
+        </BreadcrumbsTemplate>
+      </Shell>
+    </Provider>
   );
 }
 
