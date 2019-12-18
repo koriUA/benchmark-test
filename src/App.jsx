@@ -15,10 +15,7 @@ import Routes from './routes';
 import reducers from './redux/reducers';
 import { logger, crashReporter } from './redux/middleware';
 
-const store = createStore(
-  reducers,
-  applyMiddleware(logger, crashReporter)
-);
+const store = createStore(reducers, applyMiddleware(logger, crashReporter));
 
 const Breadcrumbs = () => (
   <Breadcrumb>

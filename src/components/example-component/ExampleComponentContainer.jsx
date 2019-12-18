@@ -11,9 +11,7 @@ class ExampleComponentContainer extends Component {
   }
 
   render() {
-    return (
-      <ExampleComponent {...this.props} />
-    );
+    return <ExampleComponent {...this.props} />;
   }
 }
 
@@ -25,7 +23,4 @@ const mapDispatchToProps = dispatch => ({
   showText: text => dispatch(showText(text)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ExampleComponentContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ExampleComponentContainer);
