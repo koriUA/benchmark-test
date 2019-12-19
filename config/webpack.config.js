@@ -21,6 +21,7 @@ const paths = require('./paths');
 const modules = require('./modules');
 const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
+const { fastScssTransformer } = require('@decibel/components');
 
 const postcssNormalize = require('postcss-normalize');
 
@@ -125,6 +126,9 @@ module.exports = function(webpackEnv) {
           loader: require.resolve(preProcessor),
           options: {
             sourceMap: true,
+            transformers: [
+              fastScssTransformer,
+            ]
           },
         }
       );
@@ -482,7 +486,7 @@ module.exports = function(webpackEnv) {
                     getLocalIdent: getCSSModuleLocalIdent,
                   },
                 },
-                'sass-loader'
+                'fast-sass-loader'
               ),
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
