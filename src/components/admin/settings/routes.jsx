@@ -1,39 +1,34 @@
-import General from './components/General';
-import Domains from './components/Domains';
-import Languages from './components/Languages';
-import Approvals from './components/Approvals';
-import Assets from './components/Assets';
-import Security from './components/Security';
+import { lazy } from 'react';
 
 export const ROUTES = [
   {
     name: 'General',
     path: '/',
-    component: General,
+    component: lazy(() => import('./components/General')),
   },
   {
     name: 'Domains',
     path: '/domains',
-    component: Domains,
+    component: lazy(() => import('./components/Domains')),
   },
   {
     name: 'Languages',
     path: '/languages',
-    component: Languages,
+    component: lazy(() => import('./components/Languages')),
   },
   {
     name: 'Approvals',
     path: '/approvals',
-    component: Approvals,
+    component: lazy(() => import('./components/Approvals')),
   },
   {
     name: 'Assets',
     path: '/assets',
-    component: Assets,
+    component: lazy(() => import('./components/Assets')),
   },
   {
     name: 'Security',
     path: '/security',
-    component: Security,
+    component: lazy(() => import('./components/Security')),
   },
 ];
