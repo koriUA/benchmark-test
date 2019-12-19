@@ -1,11 +1,9 @@
-import React from 'react';
-
-const General = () => <div>1</div>;
-const Domains = () => <div>2</div>;
-const Languages = () => <div>3</div>;
-const Approvals = () => <div>4</div>;
-const Assets = () => <div>5</div>;
-const Security = () => <div>6</div>;
+import General from './components/General';
+import Domains from './components/Domains';
+import Languages from './components/Languages';
+import Approvals from './components/Approvals';
+import Assets from './components/Assets';
+import Security from './components/Security';
 
 export const ROUTES = [
   {
