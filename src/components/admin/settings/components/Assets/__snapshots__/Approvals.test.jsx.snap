@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Assets should render the Assets 1`] = `
+<Assets>
+  <div>
+    Here goes content for Assets
+  </div>
+</Assets>
+`;

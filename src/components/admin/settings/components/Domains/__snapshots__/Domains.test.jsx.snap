@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Content should render the Domains 1`] = `
+<Domains>
+  <div>
+    Here goes content for Domains
+  </div>
+</Domains>
+`;

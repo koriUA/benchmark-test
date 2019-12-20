@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`General should render the General 1`] = `
+<General>
+  <div>
+    Here goes content for General
+  </div>
+</General>
+`;

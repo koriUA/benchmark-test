@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Route, MemoryRouter, Router } from 'react-router-dom';
+import { MemoryRouter, Router } from 'react-router-dom';
 import { TreeNavigation, TreeNavigationItem } from '@decibel/components';
 
 import Content from './Content';
@@ -19,21 +19,9 @@ describe('Content', () => {
     );
   });
 
-  test('should render the Routes', () => {
-    const routes = wrapper.find(Route);
-
-    expect(routes.exists()).toBe(true);
-    expect(routes.length).toBe(ROUTES.length);
-  });
-
-  test('should pass apropriate props to each Route', () => {
-    const routes = wrapper.find(Route);
-
-    ROUTES.forEach(({ path, component }, i) => {
-      expect(routes.at(i).exists()).toBe(true);
-      expect(routes.at(i).prop('path')).toEqual(`${parentPath}${path}`);
-      expect(routes.at(i).prop('component')).toEqual(component);
-    });
+  test('should render the Content', () => {
+    const content = wrapper.find(Content);
+    expect(content.exists()).toBe(true);
   });
 });
 
