@@ -3,8 +3,13 @@ import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 
 import { store } from '../../redux/store';
+import { performExampleRequest } from '../../api/example-request';
 
 import ExampleComponentContainer from './ExampleComponentContainer';
+
+jest.mock('../../api/example-request', () => ({
+  performExampleRequest: jest.fn(() => Promise.resolve()),
+}));
 
 jest.mock('../../redux/store', () => {
   const actualStore = require.requireActual('../../redux/store');
@@ -30,6 +35,7 @@ describe('ExampleComponentContainer', () => {
   let ExampleComponentContainerWithStore;
 
   beforeEach(() => {
+    performExampleRequest.mockImplementation(() => ['test']);
     ExampleComponentContainerWithStore = withStore(ExampleComponentContainer, store);
     jest.useFakeTimers();
   });
@@ -43,16 +49,23 @@ describe('ExampleComponentContainer', () => {
 
     wrapper.find('button').prop('onClick')();
 
-    expect(wrapper.find('[data-test="action-text"]').text()).toEqual('Text shown: Lorem ipsum 123');
+    expect(wrapper.find('[data-test="action-text"]').text()).toEqual(
+      'Submit shown: Data submitted!'
+    );
   });
 
   it('should handle text input', async () => {
     const wrapper = mount(<ExampleComponentContainerWithStore />);
+    performExampleRequest.mockImplementation(() => ['test']);
 
-    wrapper.find('input').prop('onChange')({ target: { value: 'text' } });
-    wrapper.find('input').prop('onChange')({ target: { value: 'text 2' } });
+    wrapper.find('input').prop('onChange')({ target: { value: 't' } });
+    wrapper.find('input').prop('onChange')({ target: { value: 'to' } });
 
-    expect(wrapper.find('[data-test="input-text"]').text()).toEqual('Text in input: text');
+    await new Promise(r => setImmediate(r));
+
+    expect(wrapper.find('[data-test="input-text"]').text()).toEqual('Suggested cities: test');
+    // eslint-disable-next-line
+    performExampleRequest.mockImplementation(() => Promise.reject('Not found'));
 
     jest.runAllTimers();
 

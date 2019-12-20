@@ -6,34 +6,34 @@ import property from 'lodash/property';
 
 import './_example-component.scss';
 
-const ExampleComponent = ({ text, showText, inputValue, inputError, onInput }) => (
+const ExampleComponent = ({ text, showText, suggestedCities, cityError, onInput }) => (
   <div className="example-component-container">
     <input
       onChange={useCallback(flow([property(['target', 'value']), onInput]), [onInput])}
       type="text"
     />
-    <button onClick={useCallback(() => showText('Lorem ipsum 123'), [showText])} type="button">
+    <button onClick={useCallback(() => showText('Data submitted!'), [showText])} type="button">
       Show Text
     </button>
-    {inputError && <p data-test="error-text">{inputError}</p>}
-    <p data-test="input-text">Text in input: {inputValue}</p>
-    <p data-test="action-text">Text shown: {text}</p>
+    {cityError && <p data-test="error-text">{cityError}</p>}
+    <p data-test="input-text">Suggested cities: {suggestedCities.join(', ')}</p>
+    <p data-test="action-text">Submit shown: {text}</p>
   </div>
 );
 
 ExampleComponent.propTypes = {
-  inputError: PropTypes.string,
-  inputValue: PropTypes.string,
+  cityError: PropTypes.string,
   onInput: PropTypes.func,
   showText: PropTypes.func,
+  suggestedCities: PropTypes.arrayOf(PropTypes.string),
   text: PropTypes.string,
 };
 
 ExampleComponent.defaultProps = {
-  inputError: '',
-  inputValue: '',
+  cityError: '',
   onInput: noop,
   showText: noop,
+  suggestedCities: [],
   text: '',
 };
 

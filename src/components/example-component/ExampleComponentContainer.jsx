@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { showText } from './ducks/actions';
 import { getExampleComponentText } from './ducks/selectors';
-import { valueSelector, errorSelector, onInput } from './alternative-reducer';
+import { citiesSelector, errorSelector, onInput } from './alternative-reducer';
 import ExampleComponent from './ExampleComponent';
 
 class ExampleComponentContainer extends Component {
   componentDidMount() {
-    // future
+    const { onInput } = this.props;
+
+    onInput('');
   }
 
   render() {
@@ -16,10 +19,14 @@ class ExampleComponentContainer extends Component {
   }
 }
 
+ExampleComponentContainer.propTypes = {
+  onInput: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => ({
   text: getExampleComponentText(state),
-  inputValue: valueSelector(state),
-  inputError: errorSelector(state),
+  cityError: errorSelector(state),
+  suggestedCities: citiesSelector(state),
 });
 
 const mapDispatchToProps = {
