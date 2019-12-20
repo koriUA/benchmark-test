@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { showText } from './ducks/actions';
 import { getExampleComponentText } from './ducks/selectors';
+import { valueSelector, errorSelector, onInput } from './alternative-reducer';
 import ExampleComponent from './ExampleComponent';
 
 class ExampleComponentContainer extends Component {
@@ -15,12 +16,15 @@ class ExampleComponentContainer extends Component {
   }
 }
 
-const mapStateToProps = (state /* , ownProps */) => ({
+const mapStateToProps = state => ({
   text: getExampleComponentText(state),
+  inputValue: valueSelector(state),
+  inputError: errorSelector(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  showText: text => dispatch(showText(text)),
-});
+const mapDispatchToProps = {
+  onInput,
+  showText,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExampleComponentContainer);

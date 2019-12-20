@@ -1,17 +1,15 @@
-const logger = store => next => action => {
-  console.log('dispatching', action); // eslint-disable-line no-console
-  const result = next(action);
-  console.log('next state', store.getState()); // eslint-disable-line no-console
-  return result;
-};
+import { createLogger } from 'redux-logger';
+import createSagaMiddleware from 'redux-saga';
+import { applyMiddleware } from 'redux';
+import get from 'lodash/get';
 
-const crashReporter = () => next => action => {
-  try {
-    return next(action);
-  } catch (err) {
-    console.error('Caught an exception!', err); // eslint-disable-line no-console
-    throw err;
-  }
-};
+export function createMiddleware(options) {
+  const loggerConfig = get(options, 'loggerConfig');
+  const sagaMiddleware = createSagaMiddleware();
+  const middleware = [sagaMiddleware, createLogger(loggerConfig)];
 
-export { logger, crashReporter };
+  return {
+    middleware: applyMiddleware(...middleware),
+    sagaMiddleware,
+  };
+}

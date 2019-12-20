@@ -8,14 +8,10 @@ import {
 } from '@decibel/components';
 import { Link } from 'react-router-dom';
 import Shell from 'cui-react-shell';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
 import Routes from './routes';
-import reducers from './redux/reducers';
-import { logger, crashReporter } from './redux/middleware';
-
-const store = createStore(reducers, applyMiddleware(logger, crashReporter));
+import { store } from './redux/store';
 
 const Breadcrumbs = () => (
   <Breadcrumb>

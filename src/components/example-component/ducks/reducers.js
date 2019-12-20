@@ -1,6 +1,6 @@
 import { SHOW_TEXT } from './types';
 
-export function exampleComponent(state = {}, action) {
+export function reducer(state = {}, action) {
   switch (action.type) {
     case SHOW_TEXT:
       return {
