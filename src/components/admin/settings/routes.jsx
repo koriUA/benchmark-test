@@ -3,7 +3,7 @@ import { lazy } from 'react';
 export const ROUTES = [
   {
     name: 'General',
-    path: '/',
+    path: '/general',
     component: lazy(() => import('./components/General')),
   },
   {

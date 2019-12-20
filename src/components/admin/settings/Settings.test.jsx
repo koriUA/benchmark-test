@@ -7,12 +7,14 @@ import Content from './Content';
 import Navigation from './Navigation';
 import { ROUTES } from './routes';
 
+const parentPath = '/parentPath';
+
 describe('Content', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = mount(
       <MemoryRouter>
-        <Content />
+        <Content parentPath={parentPath} />
       </MemoryRouter>
     );
   });
@@ -26,11 +28,10 @@ describe('Content', () => {
 
   test('should pass apropriate props to each Route', () => {
     const routes = wrapper.find(Route);
-    const { location } = wrapper.find(Router).prop('history');
 
     ROUTES.forEach(({ path, component }, i) => {
       expect(routes.at(i).exists()).toBe(true);
-      expect(routes.at(i).prop('path')).toEqual(`${location.pathname}${path}`);
+      expect(routes.at(i).prop('path')).toEqual(`${parentPath}${path}`);
       expect(routes.at(i).prop('component')).toEqual(component);
     });
   });
@@ -41,7 +42,7 @@ describe('Navigation', () => {
   beforeEach(() => {
     wrapper = mount(
       <MemoryRouter>
-        <Navigation />
+        <Navigation parentPath={parentPath} />
       </MemoryRouter>
     );
   });
@@ -66,7 +67,6 @@ describe('Navigation', () => {
 
     const button = treeNavigationItem.find('button');
     button.simulate('click');
-
     expect(
       wrapper
         .find(TreeNavigationItem)
@@ -78,11 +78,10 @@ describe('Navigation', () => {
   test('should append pathname to the previous value on button click', () => {
     const treeNavigationItem = wrapper.find(TreeNavigationItem).at(2);
     const history = wrapper.find(Router).prop('history');
-    const prevValue = history.location.pathname;
 
     const button = treeNavigationItem.find('button');
     button.simulate('click');
 
-    expect(history.location.pathname).toBe(`${prevValue}${ROUTES[2].path}`);
+    expect(history.location.pathname).toBe(`${parentPath}${ROUTES[2].path}`);
   });
 });

@@ -1,18 +1,17 @@
 import React from 'react';
-import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { useHistory, useLocation } from 'react-router-dom';
 import { TreeNavigation, TreeNavigationItem } from '@decibel/components';
 
 import { ROUTES } from './routes';
 
-const Navigation = () => {
-  const { push } = useHistory();
+const Navigation = ({ parentPath }) => {
   const { pathname } = useLocation();
-  const match = useRouteMatch();
-
+  const { push } = useHistory();
   return (
     <TreeNavigation>
       {ROUTES.map(({ name, path }) => {
-        const currentPath = `${match.path}${path}`;
+        const currentPath = `${parentPath}${path}`;
         return (
           <TreeNavigationItem
             key={name}
@@ -24,6 +23,14 @@ const Navigation = () => {
       })}
     </TreeNavigation>
   );
+};
+
+Navigation.propTypes = {
+  parentPath: PropTypes.string,
+};
+
+Navigation.defaultProps = {
+  parentPath: '',
 };
 
 export default Navigation;
