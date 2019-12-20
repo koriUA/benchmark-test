@@ -1,21 +1,19 @@
 'use strict';
 import React from 'react';
 
-const enzyme = require.requireActual('enzyme');
-const Adapter = require.requireActual('enzyme-adapter-react-16');
+import enzyme from 'enzyme';
+import { shallowToJson, mountToJson, renderToJson } from 'enzyme-to-json';
+import Adapter from 'enzyme-adapter-react-16';
 
 // To support storybooks inside jest
 import registerRequireContextHook from 'babel-plugin-require-context-hook/register';
+
 registerRequireContextHook();
 
 enzyme.configure({ adapter: new Adapter() });
 
 // Needed to support enzyme mount
 require('./setupJSDom');
-
-// https://github.com/facebook/react/issues/14050
-// Needed to support useEffect in jest tests
-React.useEffect = React.useLayoutEffect;
 
 // Needed to use d3 in tests
 class SVGPathElement extends HTMLElement {}
@@ -27,16 +25,26 @@ import sizeMe from 'react-sizeme';
 
 sizeMe.noPlaceholders = true;
 
-// Force the timezone to be the same everywhere
-const moment = require.requireActual('moment-timezone');
-moment.fn.local = moment.fn.utc; // mock the local function to return utc
-jest.doMock('moment', () => {
+jest.mock('moment', () => {
+  const moment = require.requireActual('moment-timezone');
+  // Force the timezone to be the same everywhere
+  moment.fn.local = moment.fn.utc; // mock the local function to return utc
+
   moment.tz.setDefault('America/Chicago');
+
   return moment;
 });
 Date.prototype.getTimezoneOffset = () => 300; // mock date offset
 Date.now = jest.fn(() => 1537538254000); // mock internal date
 Date.prototype.getLocaleString = () => 'Mock Date!';
+
+global.shallow = enzyme.shallow;
+global.mount = enzyme.mount;
+global.render = enzyme.render;
+global.shallowToJson = shallowToJson;
+global.mountToJson = mountToJson;
+global.renderToJson = renderToJson;
+global.React = React;
 
 // added to disable logging in test mode
 jest.mock('../../src/redux/store', () => {
