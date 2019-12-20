@@ -2,8 +2,8 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { EmptyStates } from '@decibel/components';
 
-import Usage from '../components/admin/usage/Usage';
-import UserManagement from '../components/admin/user-management/UserManagement';
+import Usage from 'components/admin/usage/Usage';
+import UserManagement from 'components/admin/user-management/UserManagement';
 
 export default () => (
   <>
