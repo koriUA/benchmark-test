@@ -4,8 +4,6 @@ import noop from 'lodash/noop';
 import flow from 'lodash/flow';
 import property from 'lodash/property';
 
-import './_example-component.scss';
-
 const ExampleComponent = ({ text, showText, suggestedCities, cityError, onInput }) => (
   <div className="example-component-container">
     <input

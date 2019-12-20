@@ -37,3 +37,16 @@ jest.doMock('moment', () => {
 Date.prototype.getTimezoneOffset = () => 300; // mock date offset
 Date.now = jest.fn(() => 1537538254000); // mock internal date
 Date.prototype.getLocaleString = () => 'Mock Date!';
+
+// added to disable logging in test mode
+jest.mock('../../src/redux/store', () => {
+  const actualStore = require.requireActual('../../src/redux/store');
+
+  return {
+    ...actualStore,
+    store: actualStore.createStore({
+      reducers: actualStore.reducers,
+      middlewareConfiguration: { loggerConfig: { predicate: () => false } },
+    }),
+  };
+});

@@ -6,7 +6,7 @@ import flow from 'lodash/flow';
 import startsWith from 'lodash/startsWith';
 import property from 'lodash/property';
 
-import { mock } from './mocks';
+import { mock } from '../../common/utilities/request-mocks';
 
 const ENDPOINT = '/example-request';
 const MOCK_STRINGS = uniq(times(1000, () => address.city().toLowerCase())).sort();

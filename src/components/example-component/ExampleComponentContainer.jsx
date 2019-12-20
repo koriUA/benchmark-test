@@ -2,10 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { registerReducer, store } from '../../redux/store';
+
 import { showText } from './ducks/actions';
-import { getExampleComponentText } from './ducks/selectors';
-import { citiesSelector, errorSelector, onInput } from './alternative-reducer';
+import {
+  getExampleComponentText,
+  citiesSelector,
+  errorSelector,
+  onInput,
+  testSaga,
+  testReducer,
+} from './ducks';
 import ExampleComponent from './ExampleComponent';
+
+// registering saga and reducer
+store.sagaMiddleware.run(testSaga);
+registerReducer(testReducer);
 
 class ExampleComponentContainer extends Component {
   componentDidMount() {
