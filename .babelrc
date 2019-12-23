@@ -1,0 +1,13 @@
+{
+  "extends": "./node_modules/@decibel/components/.babelrc",
+  "plugins": [
+    ["module-resolver", {
+      "root": ".",
+      "alias": {
+        "components": "./src/components/",
+        "routes": "./src/routes/",
+        "utils": "./src/utils"
+      }
+    }]
+  ]
+}
