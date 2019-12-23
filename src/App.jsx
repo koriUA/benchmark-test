@@ -8,8 +8,10 @@ import {
 } from '@decibel/components';
 import { Link } from 'react-router-dom';
 import Shell from 'cui-react-shell';
+import { Provider } from 'react-redux';
 
 import Routes from './routes';
+import { store } from './redux/store';
 
 const Breadcrumbs = () => (
   <Breadcrumb>
@@ -37,11 +39,13 @@ const navigationItems = () => (
 
 function App() {
   return (
-    <Shell navigationItems={navigationItems}>
-      <BreadcrumbsTemplate breadcrumbs={<Breadcrumbs />}>
-        <Routes />
-      </BreadcrumbsTemplate>
-    </Shell>
+    <Provider store={store}>
+      <Shell navigationItems={navigationItems}>
+        <BreadcrumbsTemplate breadcrumbs={<Breadcrumbs />}>
+          <Routes />
+        </BreadcrumbsTemplate>
+      </Shell>
+    </Provider>
   );
 }
 
