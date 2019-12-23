@@ -2,12 +2,8 @@ import { combineReducers } from 'redux';
 import partial from 'lodash/partial';
 import invoke from 'lodash/invoke';
 
-import { reducer as exampleComponent } from '../components/example-component/ducks/reducers';
-
 // Allows to register reducers in the conventional way
-export const syncReducers = {
-  exampleComponent,
-};
+export const syncReducers = {};
 
 export const DYNAMIC_REDUCER_STORE_KEY = 'dynamic';
 function createCommonReducer({ defaultDynamicState = {}, defaultReducer = {} }) {
