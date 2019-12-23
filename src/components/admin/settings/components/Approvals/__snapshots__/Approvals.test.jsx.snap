@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Approvals should render the Approvals 1`] = `
+<Approvals>
+  <div>
+    Here goes content for Approvals
+  </div>
+</Approvals>
+`;

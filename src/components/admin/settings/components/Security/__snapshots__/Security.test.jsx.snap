@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Security should render the Security 1`] = `
+<Security>
+  <div>
+    Here goes content for Security
+  </div>
+</Security>
+`;
