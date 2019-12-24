@@ -3,8 +3,8 @@ import { BreadcrumbsTemplate, Breadcrumb } from '@decibel/components';
 import Shell from 'cui-react-shell';
 import { Provider } from 'react-redux';
 
-import Routes from './routes';
-import { store } from './redux/store';
+import Routes from 'routes';
+import { store } from 'store/config';
 
 // Put breadcrumbs logic here
 const Breadcrumbs = () => <Breadcrumb>{/* <BreadcrumbItem /> */}</Breadcrumb>;
