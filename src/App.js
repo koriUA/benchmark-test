@@ -1,11 +1,44 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.scss';
-import {DataTableSkeleton} from 'carbon-components-react';
+import {DataTableSkeleton, Dropdown } from 'carbon-components-react';
+
+const items = [
+  {
+    id: 1,
+    text: 'Option 1',
+  },
+  {
+    id: 2,
+    text: 'Option 2',
+  },
+  {
+    id: 3,
+    text: 'Option 3',
+  },
+  {
+    id: 4,
+    text: 'Option 4',
+  },
+];
 
 function App() {
+  function dropdownChanged({selectedItem}) {
+    console.log('selectedItem...', selectedItem);
+  }
+
   return (
     <div className="App">
+      <div style={{ width: 300 }}>
+        <Dropdown
+          id="1"
+          label="some dropdown label..."
+          selectedItem={items[2]}
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={dropdownChanged}
+        />
+      </div>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo"/>
         <h1>Test...</h1>
