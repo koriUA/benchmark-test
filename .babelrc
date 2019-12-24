@@ -4,9 +4,13 @@
     ["module-resolver", {
       "root": ".",
       "alias": {
+        "common": "./src/common/",
+        "localization": "./src/common/localization/",
+        "utilities": "./src/common/utilities/",
         "components": "./src/components/",
+        "store": "./src/store/",
         "routes": "./src/routes/",
-        "utils": "./src/utils"
+        "services": "./src/services/"
       }
     }], [
       "@babel/plugin-transform-runtime",

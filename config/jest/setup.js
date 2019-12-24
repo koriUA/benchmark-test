@@ -26,6 +26,7 @@ import sizeMe from 'react-sizeme';
 sizeMe.noPlaceholders = true;
 
 jest.mock('moment', () => {
+  jest.doMock('moment', () => require.requireActual('moment'));
   const moment = require.requireActual('moment-timezone');
   // Force the timezone to be the same everywhere
   moment.fn.local = moment.fn.utc; // mock the local function to return utc
@@ -34,6 +35,7 @@ jest.mock('moment', () => {
 
   return moment;
 });
+
 Date.prototype.getTimezoneOffset = () => 300; // mock date offset
 Date.now = jest.fn(() => 1537538254000); // mock internal date
 Date.prototype.getLocaleString = () => 'Mock Date!';
@@ -47,8 +49,8 @@ global.renderToJson = renderToJson;
 global.React = React;
 
 // added to disable logging in test mode
-jest.mock('../../src/redux/store', () => {
-  const actualStore = require.requireActual('../../src/redux/store');
+jest.mock('../../src/store/config', () => {
+  const actualStore = require.requireActual('../../src/store/config');
 
   return {
     ...actualStore,
