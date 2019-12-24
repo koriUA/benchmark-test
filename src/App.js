@@ -1,17 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
-import {DataTableSkeleton} from 'carbon-components-react';
+import { DataTableSkeleton } from 'carbon-components-react';
+import { ConversionFunnelTable } from './components/ConversionFunnelTable';
+import { response } from './SCFDemoData';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo"/>
         <h1>Test...</h1>
       </header>
       <div className="bx--grid">
-        <div className="bx--row">
+         <div className="bx--row">
           <div className="bx--col-md-4 bx--col-lg-4">1/3</div>
           <div className="bx--col-md-4 bx--col-lg-4">1/3</div>
           <div className="bx--col-md-4 bx--col-lg-4">1/3</div>
@@ -39,6 +39,10 @@ function App() {
               <br />
             </div>
           </div>
+
+        </div>
+        <div className="bx-row">
+          <ConversionFunnelTable {...response} />
         </div>
       </div>
     </div>
