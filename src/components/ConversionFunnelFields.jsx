@@ -1,40 +1,10 @@
 import React from 'react';
+import { funnelFieldsCoords } from '../utils/conversionFunnelCoords';
+import { camelPad } from '../utils/textTransformations';
 
-export function ConversionFunnelFields({ fields }) {
-  function camelPad(str) {
-    return (
-      str
-        // Look for long acronyms and filter out the last letter
-        .replace(/([A-Z]+)([A-Z][a-z])/g, ' $1 $2')
-        // Look for lower-case letters followed by upper-case letters
-        .replace(/([a-z\d])([A-Z])/g, '$1 $2')
-        // Look for lower-case letters followed by numbers
-        .replace(/([a-zA-Z])(\d)/g, '$1 $2')
-        .replace(/^./, function(str) {
-          return str.toUpperCase();
-        })
-        // Remove any white space left around the word
-        .trim()
-    );
-  }
-
-  const width = 300;
-  const height = 150;
-  const padding = 5;
-  const polygonHeight = height / fields.length - padding;
-
-  const coords = fields.reduce((acc, item, index) => {
-    const offsetDelta = (padding + polygonHeight) * index + padding;
-
-    acc.push({
-      value: `${item}`,
-      positionX: `${padding}`,
-      positionY: `${polygonHeight + offsetDelta - padding}`,
-      fontSize: `${polygonHeight - 10}`
-    });
-
-    return acc;
-  }, []);
+export function ConversionFunnelFields({ fields, width = 300, padding = 5 }) {
+  const height = width / 2;
+  const coords = funnelFieldsCoords({ height, padding, fields });
 
   return (
     <div>
