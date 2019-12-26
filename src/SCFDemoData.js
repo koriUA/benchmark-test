@@ -34,8 +34,9 @@ export const data = [
 
 export const response = { data, title, date };
 
-export const asyncResponse = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve({ data, title, date });
-  }, 1000);
-});
+export const asyncResponse = () =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({ data, title, date });
+    }, 1000);
+  });

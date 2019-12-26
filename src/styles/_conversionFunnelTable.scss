@@ -9,14 +9,16 @@
   }
 
   &__title {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: bold;
     text-align: left;
+    margin: $spacing-03 0;
   }
 
   &__date {
     text-align: left;
     color: darkgray;
-    font-size: .9rem;
+    font-size: 0.9rem;
+    margin-bottom: $spacing-03;
   }
 }
