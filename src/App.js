@@ -1,11 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.scss';
-import {DataTableSkeleton, Dropdown, Loading } from 'carbon-components-react';
+import { DataTableSkeleton, Loading } from 'carbon-components-react';
+import { ConversionFunnelTable } from './components/ConversionFunnelTable';
+import { asyncResponse } from './SCFDemoData';
 import VerticalCompare from './components/VerticalCompare/VerticalCompare';
 
-
 function App() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    asyncResponse().then(response => setData(response));
+  }, []);
 
   return (
     <div className="App">
@@ -34,11 +39,19 @@ function App() {
             </div>
           </div>
         </div>
+        <div className="bx-row">
+          {!data ? (
+            <div style={{ margin: `30px auto` }}>
+              <Loading withOverlay={false} style={{ margin: '30px auto' }} />
+            </div>
+          ) : (
+            <ConversionFunnelTable {...data} />
+          )}
+        </div>
       </div>
-      <div style={{width: '800px'}}>
+      <div style={{ width: '800px' }}>
         <VerticalCompare />
       </div>
-
     </div>
   );
 }
