@@ -3,6 +3,8 @@ import { BreadcrumbsTemplate, Breadcrumb } from '@decibel/components';
 import Shell from 'cui-react-shell';
 import { Provider } from 'react-redux';
 
+import RealTimeDashboardComponentContainer from './components/real-time-dashboard';
+
 import Routes from 'routes';
 import { store } from 'store/config';
 
@@ -18,6 +20,7 @@ function App() {
       <Shell navigationItems={navigationItems}>
         <BreadcrumbsTemplate breadcrumbs={<Breadcrumbs />}>
           <Routes />
+          <RealTimeDashboardComponentContainer />
         </BreadcrumbsTemplate>
       </Shell>
     </Provider>
