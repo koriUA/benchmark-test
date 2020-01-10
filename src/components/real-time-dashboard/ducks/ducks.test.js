@@ -1,11 +1,14 @@
+import RealTimeDashboardComponent from '../RealTimeDashboardComponent';
+import RealTimeDashboardComponentContainer from '../RealTimeDashboardComponentContainer';
+
 describe('real-time-dashboard component redux', () => {
   describe('selectors', () => {
     it('dump test 001...', () => {
-      expect(true).toEqual(true);
+      expect(!!RealTimeDashboardComponent).toEqual(true);
     });
 
     it('dump test 002...', () => {
-      expect(true).toEqual(true);
+      expect(!!RealTimeDashboardComponentContainer).toEqual(true);
     });
 
     it('dump test 003...', () => {
