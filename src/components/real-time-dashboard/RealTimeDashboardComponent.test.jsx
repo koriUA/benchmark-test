@@ -1,6 +1,6 @@
 import RealTimeDashboardComponent from './RealTimeDashboardComponent';
 
-it('text showed correctly', () => {
+describe('something', () => {
   console.log(RealTimeDashboardComponent);
 
   it('dump test 001...', () => {
