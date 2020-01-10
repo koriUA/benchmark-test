@@ -35,5 +35,9 @@ describe('real-time-dashboard component redux', () => {
     it('dump test 009...', () => {
       expect(true).toEqual(true);
     });
+
+    it('dump test 010...', () => {
+      expect(true).toEqual(true);
+    });
   });
 });
